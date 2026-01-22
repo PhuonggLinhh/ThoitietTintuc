@@ -4,6 +4,7 @@ import SearchBar from './components/SearchBar';
 
 const [city, setCity] = useState('');
 const searchRef = useRef(null);
+const [coords, setCoords] = useState(null);
 
   useEffect(() => {
     searchRef.current?.focus();
