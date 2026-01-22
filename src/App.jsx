@@ -1,6 +1,7 @@
 import './App.css'
 import { useState, useRef } from 'react';
 import SearchBar from './components/SearchBar';
+import ErrorMessage from './components/ErrorMessage';
 import useFetch from './hooks/useFetch';
 
 const APP_ID = import.meta.env.VITE_OPENWEATHER_API_KEY;
@@ -53,6 +54,32 @@ function App() {
         </header>
         <SearchBar ref={searchRef} onSearch={handleSearch} />
 
+        <main>
+          {isLoading && (
+            <div className="loading-container">
+              <div className="loading-content">
+                <div className="spinner" />
+                <p className="loading-text">
+                  {coords && !city ? 'Detecting location…' : `Loading ${city || 'location'}…`}
+                </p>
+              </div>
+            </div>
+          )}
+          {hasError && !isLoading && (
+            <ErrorMessage
+              message={curErr?.message?.includes('404') ? 'City not found.' : 'Something went wrong.'}
+              onRetry={() => { setCity(''); setCoords(null); }}
+            />
+          )}
+          {!isLoading && !hasError && current && (
+            <>
+              <WeatherSection current={current} forecast={fiveDay} />
+              {city && news?.articles?.length > 0 && (
+                <NewsSection articles={news.articles.slice(0, 8)} city={city} />
+              )}
+            </>
+          )}
+        </main>
       </div>
     </div>
   );
