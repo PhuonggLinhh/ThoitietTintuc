@@ -12,6 +12,9 @@ export default function useFetch(url) {
       setError(null);
       return;
     }
+    let isCurrent = true;
+    setLoading(true);
+    setError(null);
     return () => {
       isCurrent = false;
     };
