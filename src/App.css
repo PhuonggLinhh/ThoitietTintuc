@@ -23,12 +23,12 @@ body {
   max-width: 1000px;
   background: white;
   border-radius: 1.5rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
+
 .header {
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 1rem;
   background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
   color: white;
 }
@@ -41,12 +41,13 @@ body {
 
 .header p {
   font-size: 1.2rem;
-  opacity: 0.9;
 }
+
 .search-form {
   max-width: 640px;
+  display: flex;
   margin: 0 auto;
-  padding: 1.5rem 2rem 0.5rem;
+  padding: 1rem 2rem 1rem;
   position: relative;
 }
 
@@ -56,8 +57,6 @@ body {
   font-size: 1.1rem;
   border: 2px solid #d1d5db;
   border-radius: 9999px;
-  outline: none;
-  transition: all 0.2s;
 }
 
 .search-input:focus {
@@ -67,17 +66,13 @@ body {
 
 .search-btn {
   position: absolute;
-  right: 2.5rem;
+  right: 2.3rem;
   top: 50%;
   transform: translateY(-50%);
   background: #2563eb;
   color: white;
   padding: 0.7rem 1.4rem;
   border-radius: 9999px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: background 0.2s;
 }
 
 .search-btn:hover:not(:disabled) {
@@ -86,10 +81,10 @@ body {
 
 .search-btn:disabled {
   opacity: 0.6;
-  cursor: not-allowed;
 }
-.loading-container {
-  padding: 8rem 2rem;
+
+.loading-container{
+  padding: 6rem 2rem;
   text-align: center;
 }
 
@@ -98,7 +93,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.2rem; /* khoảng cách giữa spinner và text */
+  gap: 1.2rem;
+}
+
+.loading-text {
+  margin-top: 1.5rem;
+  font-size: 1.25rem;
+  color: #4b5563;
 }
 
 .spinner {
@@ -108,6 +109,7 @@ body {
   border-top: 5px solid #3b82f6;
   border-radius: 50%;
   animation: spin 1s linear infinite;
+  margin: 0 auto;
 }
 
 @keyframes spin {
@@ -115,32 +117,17 @@ body {
   100% { transform: rotate(360deg); }
 }
 
-.loading-text {
-  font-size: 1.25rem;
-  color: #4b5563;
-  margin: 0;
-  font-weight: 500;
-}
-.error-container {
-  padding: 6rem 2rem;
-  text-align: center;
-}
-
 .error-message {
   background: #fee2e2;
   color: #991b1b;
   padding: 1.5rem;
   border-radius: 1rem;
-  margin: 0 auto;
+  margin: 2rem auto;
   max-width: 500px;
 }
 
-.error-message p {
-  margin: 0 0 1rem 0;
-  font-size: 1.15rem;
-}
-
 .retry-btn {
+  margin-top: 1rem;
   background: #dc2626;
   color: white;
   padding: 0.8rem 1.8rem;
@@ -148,12 +135,12 @@ body {
   border: none;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
 }
 
 .retry-btn:hover {
   background: #b91c1c;
 }
+
 .weather-section {
   padding: 2rem;
 }
@@ -180,11 +167,6 @@ body {
   gap: 1.5rem;
 }
 
-.weather-icon img {
-  width: 120px;
-  height: 120px;
-}
-
 .current-temp {
   font-size: 5.5rem;
   font-weight: 800;
@@ -197,10 +179,6 @@ body {
   font-size: 1.1rem;
 }
 
-.detail-item span {
-  font-weight: 600;
-  color: #374151;
-}
 .forecast-title {
   font-size: 1.6rem;
   font-weight: 700;
@@ -233,9 +211,9 @@ body {
   color: #1e40af;
 }
 
-.forecast-icon img {
-  width: 80px;
-  height: 80px;
+.forecast-icon {
+  font-size: 3rem;
+  margin: 0.5rem 0;
 }
 
 .forecast-temp {
@@ -244,10 +222,6 @@ body {
   margin: 0.4rem 0;
 }
 
-.forecast-desc {
-  font-size: 0.95rem;
-  color: #4b5563;
-}
 .news-section {
   padding: 0 2rem 3rem;
 }
@@ -290,32 +264,4 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.news-title-article {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 0.7rem;
-  line-height: 1.35;
-  color: #111827;
-}
-
-.news-description {
-  flex: 1;
-  color: #4b5563;
-  margin-bottom: 1rem;
-  font-size: 0.98rem;
-}
-
-.read-more {
-  align-self: flex-start;
-  color: #2563eb;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.read-more:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
 }
