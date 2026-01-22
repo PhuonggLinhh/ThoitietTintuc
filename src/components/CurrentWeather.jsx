@@ -18,6 +18,20 @@ export default function CurrentWeather({ data }) {
                     <div style={{ fontSize: '1.4rem', opacity: 0.9 }}>{description}</div>
                 </div>
             </div>
+            <div className="weather-details">
+                <div className="detail-item">
+                    <span>Feels like:</span> {Math.round(main.feels_like)}°C
+                </div>
+                <div className="detail-item">
+                    <span>Humidity:</span> {main.humidity}%
+                </div>
+                <div className="detail-item">
+                    <span>Wind:</span> {wind.speed} m/s
+                </div>
+                <div className="detail-item">
+                    <span>Pressure:</span> {main.pressure} hPa
+                </div>
+            </div>
         </div>
     );
 }
