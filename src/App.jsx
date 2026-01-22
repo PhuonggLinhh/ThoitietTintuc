@@ -1,4 +1,14 @@
 import './App.css'
+import { useState, useRef } from 'react';
+import SearchBar from './components/SearchBar';
+
+const [city, setCity] = useState('');
+const searchRef = useRef(null);
+
+const handleSearch = (searchCity) => {
+  setCity(searchCity.trim());
+};
+
 
 function App() {
   return (
@@ -8,6 +18,8 @@ function App() {
           <h1>Weather & News Aggregator</h1>
           <p>Search for a city to get weather forecast and latest news</p>
         </header>
+        <SearchBar ref={searchRef} onSearch={handleSearch} />
+
       </div>
     </div>
   );
