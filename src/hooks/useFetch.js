@@ -21,6 +21,18 @@ export default function useFetch(url) {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return res.json();
             })
+            .then(result => {
+                if (isCurrent) {
+                    setData(result);
+                    setLoading(false);
+                }
+            })
+            .catch(err => {
+                if (isCurrent) {
+                    setError(err);
+                    setLoading(false);
+                }
+            });
 
 
         return () => {
