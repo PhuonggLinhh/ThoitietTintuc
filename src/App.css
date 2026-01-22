@@ -17,3 +17,29 @@ body {
   justify-content: center;
   padding: 1.5rem;
 }
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+.header {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  color: white;
+}
+
+.header h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.header p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
