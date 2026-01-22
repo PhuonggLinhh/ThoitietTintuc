@@ -1,26 +1,34 @@
 import './App.css'
 import { useState, useRef } from 'react';
 import SearchBar from './components/SearchBar';
+import useFetch from './hooks/useFetch';
 
 const [city, setCity] = useState('');
 const searchRef = useRef(null);
 const [coords, setCoords] = useState(null);
 
-  useEffect(() => {
-    searchRef.current?.focus();
-    navigator.geolocation?.getCurrentPosition(
-      pos => setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
-      err => console.warn('Geolocation error:', err)
-    );
-  }, []);
-  
-  const weatherUrl = coords ? `${base}/weather?lat=${coords.lat}&lon=${coords.lon}${common}`
-    : city ? `${base}/weather?q=${city}${common}` : null;
+useEffect(() => {
+  searchRef.current?.focus();
+  navigator.geolocation?.getCurrentPosition(
+    pos => setCoords({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+    err => console.warn('Geolocation error:', err)
+  );
+}, []);
 
-  const forecastUrl = coords ? `${base}/forecast?lat=${coords.lat}&lon=${coords.lon}${common}`
-    : city ? `${base}/forecast?q=${city}${common}` : null;
+const weatherUrl = coords ? `${base}/weather?lat=${coords.lat}&lon=${coords.lon}${common}`
+  : city ? `${base}/weather?q=${city}${common}` : null;
 
-  const newsUrl = city ? `https://newsapi.org/v2/everything?q=${encodeURIComponent(city)}&sortBy=publishedAt&apiKey=${NEWS_KEY}` : null;
+const forecastUrl = coords ? `${base}/forecast?lat=${coords.lat}&lon=${coords.lon}${common}`
+  : city ? `${base}/forecast?q=${city}${common}` : null;
+
+const newsUrl = city ? `https://newsapi.org/v2/everything?q=${encodeURIComponent(city)}&sortBy=publishedAt&apiKey=${NEWS_KEY}` : null;
+
+const { data: current, loading: curLoad, error: curErr } = useFetch(weatherUrl);
+const { data: forecast, loading: foreLoad, error: foreErr } = useFetch(forecastUrl);
+const { data: news } = useFetch(newsUrl);
+
+const isLoading = curLoad || foreLoad || (city && !news?.articles);
+const hasError = curErr || foreErr;
 
 const handleSearch = (searchCity) => {
   setCity(searchCity.trim());
