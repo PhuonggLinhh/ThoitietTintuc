@@ -14,6 +14,14 @@ const [coords, setCoords] = useState(null);
     );
   }, []);
   
+  const weatherUrl = coords ? `${base}/weather?lat=${coords.lat}&lon=${coords.lon}${common}`
+    : city ? `${base}/weather?q=${city}${common}` : null;
+
+  const forecastUrl = coords ? `${base}/forecast?lat=${coords.lat}&lon=${coords.lon}${common}`
+    : city ? `${base}/forecast?q=${city}${common}` : null;
+
+  const newsUrl = city ? `https://newsapi.org/v2/everything?q=${encodeURIComponent(city)}&sortBy=publishedAt&apiKey=${NEWS_KEY}` : null;
+
 const handleSearch = (searchCity) => {
   setCity(searchCity.trim());
 };
