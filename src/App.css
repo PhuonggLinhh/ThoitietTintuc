@@ -88,3 +88,36 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.loading-container {
+  padding: 8rem 2rem;
+  text-align: center;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem; /* khoảng cách giữa spinner và text */
+}
+
+.spinner {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.25rem;
+  color: #4b5563;
+  margin: 0;
+  font-weight: 500;
+}
