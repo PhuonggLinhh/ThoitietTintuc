@@ -1,8 +1,10 @@
-import './App.css'
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SearchBar from './components/SearchBar';
 import ErrorMessage from './components/ErrorMessage';
+import WeatherSection from './components/WeatherSection';
+import NewsSection from './components/NewsSection';
 import useFetch from './hooks/useFetch';
+import './App.css';
 
 const APP_ID = import.meta.env.VITE_OPENWEATHER_API_KEY;
 const NEWS_KEY = import.meta.env.VITE_NEWSAPI_KEY;
@@ -52,7 +54,8 @@ function App() {
           <h1>Weather & News Aggregator</h1>
           <p>Search for a city to get weather forecast and latest news</p>
         </header>
-        <SearchBar ref={searchRef} onSearch={handleSearch} />
+
+        <SearchBar ref={searchRef} onSearch={handleSearch} disabled={isLoading} />
 
         <main>
           {isLoading && (
@@ -65,12 +68,14 @@ function App() {
               </div>
             </div>
           )}
+
           {hasError && !isLoading && (
             <ErrorMessage
               message={curErr?.message?.includes('404') ? 'City not found.' : 'Something went wrong.'}
               onRetry={() => { setCity(''); setCoords(null); }}
             />
           )}
+
           {!isLoading && !hasError && current && (
             <>
               <WeatherSection current={current} forecast={fiveDay} />
@@ -84,4 +89,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
